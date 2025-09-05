@@ -1,12 +1,16 @@
 from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
-from src.routes import records
+from app.routes import records
+from app.core.database import engine
+from app.models.base import Base
 
 app = FastAPI(title="API de Identificación de Emociones")
 
 api_router = APIRouter(prefix="/api/v1")
 
 api_router.include_router(records.router, prefix="/records", tags=["records"])
+
+app.include_router(api_router) 
 
 @app.get("/")
 def read_root():
@@ -19,3 +23,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.on_event("startup")
+def on_startup():
+    # Create tables from database
+    Base.metadata.create_all(bind=engine)
