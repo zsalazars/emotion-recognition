@@ -50,5 +50,16 @@ services:
       timeout: 10s
       retries: 3
 
+  web:
+    build:
+      context: ./emotion-reco-web
+      dockerfile: Dockerfile
+    container_name: emotion_web
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+
 volumes:
   postgres_data:

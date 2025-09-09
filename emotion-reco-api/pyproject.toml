@@ -20,6 +20,9 @@ dependencies = [
 packages = [{include = "emotion_reco_api", from = "src"}]
 
 
+[tool.poetry.group.dev.dependencies]
+sqlalchemy2-stubs = "^0.0.2a38"
+
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
