@@ -1,7 +1,6 @@
 from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from app.routes import records
-from app.routes import professors
 from app.core.database import engine
 from app.models.base import Base
 
@@ -9,8 +8,7 @@ app = FastAPI(title="API de Identificación de Emociones")
 
 api_router = APIRouter(prefix="/api/v1")
 
-api_router.include_router(records.router, prefix="/records", tags=["Records"])
-api_router.include_router(professors.router, prefix="/professors", tags=["Professors"])
+api_router.include_router(records.router, prefix="/records", tags=["records"])
 
 app.include_router(api_router) 
 
