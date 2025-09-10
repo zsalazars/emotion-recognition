@@ -1,5 +1,7 @@
+from sqlalchemy import Column, Integer, String
+from app.models.base import Base
 
-class Professors:
+class Professor(Base):
   __tablename__ = 'professors'
   
   id = Column(Integer, primary_key=True, index=True)
