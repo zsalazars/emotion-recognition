@@ -2,26 +2,26 @@ import { useState } from "react";
 import {
   Home,
   Users,
-  Settings,
-  FileText,
   BarChart3,
-  Calendar,
   X,
   ChevronLeft,
-  User
+  User,
+  Frown,
+  Landmark
 } from "lucide-react";
+import { Link } from "react-router";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const menuItems = [
-    { icon: Home, label: "Dashboard", href: "/dashboard", active: true },
-    { icon: Users, label: "Docentes", href: "/professors" },
-    { icon: FileText, label: "Documentos", href: "/documents" },
-    { icon: BarChart3, label: "Análisis", href: "/analytics" },
-    { icon: Calendar, label: "Calendario", href: "/calendar" },
-    { icon: Settings, label: "Configuración", href: "/settings" },
+    { icon: Home, label: "Dashboard", href: "/dashboard" },
+    { icon: Users, label: "Docentes", href: "/docentes" },
+    { icon: Landmark, label: "Asignaturas", href: "/asignaturas" },
+    { icon: Frown, label: "Emociones", href: "/emociones" },
+    { icon: BarChart3, label: "Registros", href: "/registros-emociones" },
   ];
 
   return (
@@ -36,22 +36,23 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
       {/* Sidebar */}
       <aside className={`
-          bg-white shadow-xl transition-all duration-300 ease-in-out
-          ${isCollapsed ? 'w-16' : 'w-64'}
+          bg-blue-950 shadow-xl transition-all duration-300 ease-in-out
+          ${isCollapsed ? 'w-16' : 'w-72'}
           flex-shrink-0
         `}>
         {/* Sidebar Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200">
+        <div className="flex items-center justify-between p-4 border-b border-[#2CC5F4]">
           {!isCollapsed && (
             <div className="flex items-center space-x-2">
-              <span className="text-xl font-bold text-gray-800">Reconocimiento de Emociones UAC</span>
+              <img src={"/logotipo_uac.webp"} alt="Logotipo Universidad Andina del Cusco" width={50} height={50} />
+              <span className="text-xl font-semibold text-gray-200">Reconocimiento de Emociones UAC</span>
             </div>
           )}
 
           {/* Collapse button - desktop */}
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="hidden lg:flex items-center justify-center w-8 h-8 rounded-lg hover:bg-gray-100 transition-colors"
+            className="hidden lg:flex items-center justify-center w-8 h-8 rounded-lg text-white hover:bg-gray-200 hover:text-black transition-colors"
           >
             <ChevronLeft className={`w-4 h-4 transition-transform ${isCollapsed ? 'rotate-180' : ''}`} />
           </button>
@@ -69,12 +70,12 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         {!isCollapsed && (
           <div className="p-4 border-b border-gray-200">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-r bg-blue-800 rounded-full flex items-center justify-center">
                 <User className="w-5 h-5 text-white" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-800 truncate">Juan Pérez</p>
-                <p className="text-xs text-gray-500 truncate">juan@empresa.com</p>
+                <p className="text-sm font-medium text-gray-200 truncate">Juan Pérez</p>
+                <p className="text-xs text-gray-400 truncate">juan@empresa.com</p>
               </div>
             </div>
           </div>
@@ -84,15 +85,17 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         <nav className="flex-1 p-4 space-y-2">
           {menuItems.map((item, index) => {
             const Icon = item.icon;
+            const isActive = index === activeIndex;
             return (
-              <a
+              <Link
                 key={index}
-                href={item.href}
+                to={item.href}
+                onClick={() => setActiveIndex(index)}
                 className={`
                   flex items-center space-x-3 px-3 py-2.5 rounded-lg transition-all duration-200
-                  ${item.active
-                    ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
-                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-800'
+                  ${isActive
+                    ? 'bg-[#2CC5F4] text-white shadow-lg'
+                    : 'text-gray-200 hover:bg-gray-100 hover:text-gray-800'
                   }
                   ${isCollapsed ? 'justify-center' : ''}
                 `}
@@ -103,7 +106,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
                     <span className="font-medium">{item.label}</span>
                   </>
                 )}
-              </a>
+              </Link>
             );
           })}
         </nav>
@@ -113,7 +116,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       <div className="flex-1 flex flex-col">
 
         {/* Page Content */}
-        <main className="p-6 flex-1 overflow-y-auto">
+        <main className="p-6 flex-1 overflow-y-auto bg-blue-50">
           {children || (
             <div className="bg-white rounded-xl shadow-sm p-8">
               <h1 className="text-2xl font-bold text-gray-800 mb-4">

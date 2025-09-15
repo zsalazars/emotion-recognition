@@ -1,27 +1,17 @@
-[project]
+[tool.poetry]
 name = "emotion-reco-api"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "zsalazarq",email = "salazarsergio1082@gmail.com"}
-]
-readme = "README.md"
-requires-python = ">=3.11"
-dependencies = [
-    "fastapi (>=0.116.1,<0.117.0)",
-    "uvicorn (>=0.35.0,<0.36.0)",
-    "sqlalchemy (>=2.0.43,<3.0.0)",
-    "psycopg2-binary (>=2.9.10,<3.0.0)",
-    "alembic (>=1.16.5,<2.0.0)",
-    "python-dotenv (>=1.1.1,<2.0.0)"
-]
+authors = ["zsalazarq <salazarsergio1082@gmail.com>"]
+package-mode = false
 
-[tool.poetry]
-packages = [{include = "emotion_reco_api", from = "src"}]
-
-
-[tool.poetry.group.dev.dependencies]
-sqlalchemy2-stubs = "^0.0.2a38"
+[tool.poetry.dependencies]
+python = ">=3.11"
+django = "^5.2.6"
+psycopg2-binary = "^2.9.10"
+djangorestframework = "^3.16.1"
+django-filter = "^25.1"
+python-dotenv = "^1.1.1"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
