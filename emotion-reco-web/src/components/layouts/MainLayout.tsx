@@ -10,6 +10,7 @@ import {
   Landmark
 } from "lucide-react";
 import { Link } from "react-router";
+import { Toaster } from "react-hot-toast";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -117,16 +118,11 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
         {/* Page Content */}
         <main className="p-6 flex-1 overflow-y-auto bg-blue-50">
-          {children || (
-            <div className="bg-white rounded-xl shadow-sm p-8">
-              <h1 className="text-2xl font-bold text-gray-800 mb-4">
-                ¡Bienvenido al Dashboard!
-              </h1>
-              <p className="text-gray-600 mb-6">
-                Este es tu layout principal con sidebar. Aquí puedes colocar el contenido de tus páginas.
-              </p>
-            </div>
-          )}
+          {children}
+          <Toaster
+            position="bottom-right"
+            reverseOrder={false}
+          />
         </main>
       </div>
     </div>

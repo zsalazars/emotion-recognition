@@ -1,10 +1,10 @@
 import MainLayout from "@/components/layouts/MainLayout";
-import Courses from "@/pages/Courses";
-import Dashboard from "@/pages/Dashboard";
-import Emotions from "@/pages/Emotions";
-import LoginPage from "@/pages/LoginPage";
-import Professors from "@/pages/Professors";
-import Records from "@/pages/RecordsPage";
+import Courses from "@/features/courses/pages/Courses";
+import Dashboard from "@/features/home/Dashboard";
+import Emotions from "@/features/emotions/pages/Emotions";
+import LoginPage from "@/features/auth/pages/LoginPage";
+import Professors from "@/features/professors/pages/Professors";
+import Records from "@/features/records/pages/RecordsPage";
 import { Outlet, Route, Routes } from "react-router";
 
 const protectedRoutes = [
