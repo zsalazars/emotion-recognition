@@ -1,2 +1,46 @@
+# Python
+*.py[cod]
+__pycache__/
+*.so
+*.egg
+*.egg-info/
+*.pyc
+*.pyo
+
+# Virtual Environments
 .env
 env/
+.venv/
+venv/
+
+# Django
+*.log
+*.pot
+*.pyc
+*.sqlite3
+db.sqlite3
+/media/
+staticfiles/
+
+# Migrations (optional)
+# If you want to track them, comment these lines
+*/migrations/*.pyc
+*/migrations/__pycache__/
+*/migrations/*.py
+
+# VSCode
+.vscode/
+
+# MacOS
+.DS_Store
+
+# Poetry
+poetry.lock
+
+# Docker
+docker-compose.override.yml
+*.env
+
+# Node / Frontend (if you have it)
+node_modules/
+dist/
