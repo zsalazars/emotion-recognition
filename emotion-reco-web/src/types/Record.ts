@@ -1,8 +1,8 @@
 export interface Record {
   id: number;
-  emotion: string;
   accuracy: number;
-  classroom: string;
+  classroom_code: string;
+  emotion: number;
+  course: number;
   timestamp: string;
-  course_id: number;
 }

@@ -12,6 +12,7 @@ psycopg2-binary = "^2.9.10"
 djangorestframework = "^3.16.1"
 django-filter = "^25.1"
 python-dotenv = "^1.1.1"
+django-cors-headers = "^4.8.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
