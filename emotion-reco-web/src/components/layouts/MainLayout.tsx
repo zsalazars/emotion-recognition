@@ -36,11 +36,14 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       )}
 
       {/* Sidebar */}
-      <aside className={`
-          bg-blue-950 shadow-xl transition-all duration-300 ease-in-out
-          ${isCollapsed ? 'w-16' : 'w-72'}
-          flex-shrink-0
-        `}>
+      <aside
+        className={`
+        bg-blue-950 shadow-xl transition-all duration-300 ease-in-out
+        h-screen fixed top-0 left-0 flex flex-col z-50
+        ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"} 
+        lg:translate-x-0
+        ${isCollapsed ? "lg:w-16" : "lg:w-72"}`}
+      >
         {/* Sidebar Header */}
         <div className="flex items-center justify-between p-4 border-b border-[#2CC5F4]">
           {!isCollapsed && (
@@ -83,48 +86,67 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         )}
 
         {/* Navigation Menu */}
-        <nav className="flex-1 p-4 space-y-2">
-          {menuItems.map((item, index) => {
-            const Icon = item.icon;
-            const isActive = index === activeIndex;
-            return (
-              <Link
-                key={index}
-                to={item.href}
-                onClick={() => setActiveIndex(index)}
-                className={`
-                  flex items-center space-x-3 px-3 py-2.5 rounded-lg transition-all duration-200
-                  ${isActive
-                    ? 'bg-[#2CC5F4] text-white shadow-lg'
-                    : 'text-gray-200 hover:bg-gray-100 hover:text-gray-800'
-                  }
-                  ${isCollapsed ? 'justify-center' : ''}
-                `}
-              >
-                <Icon className={`${isCollapsed ? 'w-5 h-5' : 'w-5 h-5'} flex-shrink-0`} />
-                {!isCollapsed && (
-                  <>
-                    <span className="font-medium">{item.label}</span>
-                  </>
-                )}
-              </Link>
-            );
-          })}
-        </nav>
+        <div className="flex flex-col flex-1 p-4 justify-between">
+          <nav className="space-y-2">
+            {menuItems.map((item, index) => {
+              const Icon = item.icon;
+              const isActive = index === activeIndex;
+              return (
+                <Link
+                  key={index}
+                  to={item.href}
+                  onClick={() => setActiveIndex(index)}
+                  className={`
+                flex items-center space-x-3 px-3 py-2.5 rounded-lg transition-all duration-200
+                ${isActive
+                      ? 'bg-[#2CC5F4] text-white shadow-lg'
+                      : 'text-gray-200 hover:bg-gray-100 hover:text-gray-800'}
+                ${isCollapsed ? 'justify-center' : ''}
+              `}
+                >
+                  <Icon className="w-5 h-5 flex-shrink-0" />
+                  {!isCollapsed && <span className="font-medium">{item.label}</span>}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <Link
+            to={"/"}
+            className="flex items-center space-x-3 px-3 py-2.5 rounded-lg transition-all bg-red-800 hover:bg-red-900 text-white shadow-lg duration-200"
+          >
+            Cerrar sesión
+          </Link>
+        </div>
       </aside>
 
-      {/* Main Content Area */}
-      <div className="flex-1 flex flex-col">
-
-        {/* Page Content */}
+      <div className="lg:hidden p-4 bg-blue-50 shadow-md">
+        <button
+          onClick={() => setIsMobileMenuOpen(true)}
+          className="flex items-center space-x-2 text-blue-950"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <span>Menu</span>
+        </button>
+      </div>
+      {/* Main Content */}
+      <div
+        className={`flex-1 flex flex-col transition-all duration-300 
+    ${isCollapsed ? "lg:ml-16" : "lg:ml-72"} ml-0`}
+      >
         <main className="p-6 flex-1 overflow-y-auto bg-blue-50">
           {children}
-          <Toaster
-            position="bottom-right"
-            reverseOrder={false}
-          />
+          <Toaster position="bottom-right" reverseOrder={false} />
         </main>
       </div>
+
     </div>
   );
 };
