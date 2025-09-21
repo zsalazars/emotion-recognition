@@ -78,7 +78,7 @@ const Records = () => {
   };
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="mx-auto">
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-xl mb-8 overflow-hidden">
           <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 p-8">

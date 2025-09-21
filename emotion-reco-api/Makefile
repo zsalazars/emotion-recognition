@@ -2,6 +2,9 @@
 run-server:
 	poetry run python manage.py runserver
 
+create-app:
+	poetry run python manage.py startapp $(APP)
+
 # Create a superuser
 create-superuser:
 	poetry run python manage.py createsuperuser

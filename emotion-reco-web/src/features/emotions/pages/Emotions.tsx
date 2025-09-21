@@ -91,7 +91,7 @@ const Emotions = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4">
-      <div className="max-w-6xl">
+      <div>
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-xl mb-8 overflow-hidden">
           <div className="bg-blue-950 p-8">
@@ -118,7 +118,7 @@ const Emotions = () => {
             </div>
             <button
               onClick={openCreateModal}
-              className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              className="bg-gradient-to-r from-indigo-900 to-blue-800 text-white px-6 py-3 rounded-lg font-medium hover:from-indigo-800 hover:to-blue-900 transition-all duration-200 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               disabled={loading}
             >
               <Plus className="w-5 h-5" />
