@@ -37,7 +37,7 @@ const Courses = () => {
 
       if (editingCourse) {
         // Actualizar
-        const updatedCourse = { ...editingCourse, name: formData.name.trim(), code: formData.code, professor_id: formData.professor_id };
+        // const updatedCourse = { ...editingCourse, name: formData.name.trim(), code: formData.code, professor_id: formData.professor_id };
         //await UpdateEmotion(updatedEmotion);
         toast.success('Emoción actualizada exitosamente');
       } else {
