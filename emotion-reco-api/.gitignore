@@ -22,11 +22,9 @@ db.sqlite3
 /media/
 staticfiles/
 
-# Migrations (optional)
-# If you want to track them, comment these lines
-*/migrations/*.pyc
+# Ignore caches
 */migrations/__pycache__/
-*/migrations/*.py
+*/migrations/*.pyc
 
 # VSCode
 .vscode/
