@@ -12,6 +12,7 @@ const protectedRoutes = [
   { path: "/asignaturas", element: <Courses /> },
   { path: "/emociones", element: <Emotions /> },
   { path: "/docentes", element: <Professors /> },
+  { path: "/estudiantes", element: <Emotions /> },
   { path: "/registros-emociones", element: <Records /> },
 ];
 
