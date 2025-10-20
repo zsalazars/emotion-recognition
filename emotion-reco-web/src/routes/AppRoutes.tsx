@@ -6,13 +6,14 @@ import LoginPage from "@/features/auth/pages/LoginPage";
 import Professors from "@/features/professors/pages/Professors";
 import Records from "@/features/records/pages/RecordsPage";
 import { Outlet, Route, Routes } from "react-router";
+import Students from "@/features/students/pages/Students";
 
 const protectedRoutes = [
   { path: "/dashboard", element: <Dashboard /> },
   { path: "/asignaturas", element: <Courses /> },
   { path: "/emociones", element: <Emotions /> },
   { path: "/docentes", element: <Professors /> },
-  { path: "/estudiantes", element: <Emotions /> },
+  { path: "/estudiantes", element: <Students /> },
   { path: "/registros-emociones", element: <Records /> },
 ];
 
