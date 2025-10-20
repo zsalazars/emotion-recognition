@@ -9,6 +9,6 @@ class EmotionAdmin(admin.ModelAdmin):
 
 @admin.register(EmotionRecord)
 class EmotionRecordAdmin(admin.ModelAdmin):
-    list_display = ("emotion", "accuracy", "course", "classroom_code", "timestamp")
-    list_filter = ("emotion", "course", "timestamp")
-    search_fields = ("emotion", "course", "classroom_code")
+    list_display = ("emotion", "accuracy", "course", "student", "classroom_code", "timestamp")
+    list_filter = ("emotion", "course", "student", "timestamp")
+    search_fields = ("emotion", "course", "student", "classroom_code")
