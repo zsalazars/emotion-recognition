@@ -5,6 +5,7 @@ import { GetCourses, PostCourse } from "@/api/course.api";
 import toast from "react-hot-toast";
 import Modal from "@/components/shared/Modal";
 import CourseForm from "../components/CourseForm";
+import CourseTable from "../components/courses-table";
 
 const Courses = () => {
   const [courses, setCourses] = useState<Course[]>([]);
@@ -118,36 +119,7 @@ const Courses = () => {
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-gray-50 border-b border-gray-200">
-                  <tr>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">ID</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Nombre</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Docente</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Acciones</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                  {courses.map((course: Course) => (
-                    <tr key={course.id} className="hover:bg-gray-50 transition-colors duration-150">
-                      <td className="px-6 py-4 text-sm font-medium text-gray-900">
-                        #{course.id.toString().padStart(3, '0')}
-                      </td>
-                      <td className="px-6 py-4">
-                        <div>
-                          <div className="text-sm font-medium text-gray-900">{course.name}</div>
-                          <div className="text-sm text-gray-500">{course.code}</div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-                          {course.professor.full_name}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <CourseTable data={courses} />
             </div>
           )}
         </div>

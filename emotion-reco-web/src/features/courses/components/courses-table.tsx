@@ -17,18 +17,13 @@ import {
   ArrowUpDown,
   ArrowUp,
   ArrowDown,
-  UserPlus,
 } from 'lucide-react';
 import columns from './columns';
-import type { Student } from '@/types/Student';
+import type { Course } from '@/types/Course';
 
-const StudentsTable = ({ data }: { data: Student[] }) => {
+const CourseTable = ({ data }: { data: Course[] }) => {
   const [globalFilter, setGlobalFilter] = useState('');
   const [sorting, setSorting] = useState<SortingState>([]);
-
-  // Función para ver detalles
-  const handleView = () => {
-  };
 
   // Función para editar
   const handleEdit = () => {
@@ -42,7 +37,6 @@ const StudentsTable = ({ data }: { data: Student[] }) => {
   const table = useReactTable({
     data,
     columns: columns({
-      onView: handleView,
       onEdit: handleEdit,
       onDelete: handleDelete,
     }),
@@ -64,25 +58,11 @@ const StudentsTable = ({ data }: { data: Student[] }) => {
   });
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="bg-gray-50 min-h-screen">
       <div>
-        <div className="bg-white rounded-lg shadow-lg">
+        <div className="bg-white rounded-lg ">
           {/* Header */}
           <div className="p-6 border-b border-gray-200">
-            <div className="flex justify-between items-center mb-4">
-              <div>
-                <h2 className="text-2xl font-bold text-gray-800">Lista de alumnos</h2>
-                <p className="text-gray-600 mt-1">Administra la información de los alumnos</p>
-              </div>
-              <button
-                onClick={() => alert('Crear nuevo profesor')}
-                className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors shadow-md"
-              >
-                <UserPlus className="w-4 h-4" />
-                <span>Nuevo Profesor</span>
-              </button>
-            </div>
-
             {/* Barra de búsqueda */}
             <div className="relative max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -145,15 +125,13 @@ const StudentsTable = ({ data }: { data: Student[] }) => {
                 {table.getRowModel().rows.length === 0 ? (
                   <tr>
                     <td
-                      colSpan={table.getAllColumns().length}
-                      className="px-6 py-12"
+                      colSpan={columns.length}
+                      className="px-6 py-12 text-center text-gray-500"
                     >
-                      <div className="flex flex-col items-center justify-center space-y-2 text-gray-500">
-                        <Search className="w-12 h-12 text-gray-300" />
-                        <span className="font-medium">No se encontraron alumnos en esta asignatura</span>
-                        <span className="text-sm">
-                          Intenta con diferentes términos de búsqueda
-                        </span>
+                      <div className="flex flex-col items-center space-y-2">
+                        <Search className="w-8 h-8 text-gray-300" />
+                        <span>No se encontraron profesores</span>
+                        <span className="text-sm">Intenta con diferentes términos de búsqueda</span>
                       </div>
                     </td>
                   </tr>
@@ -248,4 +226,4 @@ const StudentsTable = ({ data }: { data: Student[] }) => {
   );
 };
 
-export default StudentsTable;
+export default CourseTable;

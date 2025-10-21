@@ -6,6 +6,11 @@ export const GetCourses = async () => {
   return response.data;
 };
 
+export const GetCoursesById = async (id: number) => {
+  const response = await api.get(`/courses/${id}`);
+  return response.data;
+};
+
 export const PostCourse = async (data: CourseFormData) => {
   const response = await api.post("/courses/", data);
   return response.data;

@@ -10,10 +10,10 @@ import Students from "@/features/students/pages/Students";
 
 const protectedRoutes = [
   { path: "/dashboard", element: <Dashboard /> },
-  { path: "/asignaturas", element: <Courses /> },
   { path: "/emociones", element: <Emotions /> },
   { path: "/docentes", element: <Professors /> },
-  { path: "/estudiantes", element: <Students /> },
+  { path: "/asignaturas", element: <Courses /> },
+  { path: "/asignaturas/estudiantes/:id", element: <Students /> },
   { path: "/registros-emociones", element: <Records /> },
 ];
 
