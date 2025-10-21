@@ -1,20 +1,67 @@
 import { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Area, AreaChart } from 'recharts';
 import { Users, TrendingUp, Clock, Activity, Heart, AlertTriangle, CheckCircle, type LucideIcon } from 'lucide-react';
+import type { Record } from '@/types/Record';
+import { GetRecords } from '@/api/record.api';
+
+type EmotionChartData = {
+  name: string;
+  count: number;
+  accuracy: number;
+  color: string;
+};
 
 const Dashboard = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [selectedPeriod, setSelectedPeriod] = useState('today');
 
-  // Datos simulados - en tu proyecto real vendrían de la API
-  const emotionData = [
-    { emotion: 'Feliz', count: 45, color: '#10B981', percentage: 30 },
-    { emotion: 'Neutral', count: 38, color: '#6B7280', percentage: 25.3 },
-    { emotion: 'Concentrado', count: 32, color: '#3B82F6', percentage: 21.3 },
-    { emotion: 'Confundido', count: 20, color: '#F59E0B', percentage: 13.3 },
-    { emotion: 'Triste', count: 12, color: '#EF4444', percentage: 8 },
-    { emotion: 'Enojado', count: 3, color: '#DC2626', percentage: 2 }
-  ];
+  const [records, setRecords] = useState<EmotionChartData[]>([]);
+
+  const fetchRecords = async () => {
+    const response = await GetRecords();
+
+    const emotionData = response.reduce((acc: EmotionChartData[], record: Record) => {
+      const existing = acc.find(item => item.name === record.emotion.name);
+      if (existing) {
+        existing.count += 1;
+      } else {
+        acc.push({
+          name: record.emotion.name,
+          count: 1,
+          accuracy: record.accuracy,
+          color: selectColorByEmotion(record.emotion.name),
+        });
+      }
+      return acc;
+    }, []);
+
+    console.log(emotionData)
+
+    setRecords(emotionData);
+  }
+
+  const selectColorByEmotion = (emotion: string) => {
+    switch (emotion) {
+      case 'happiness':
+        return '#10B981';
+      case 'neutral':
+        return '#6B7280';
+      case 'surprise':
+        return '#3B82F6';
+      case 'disgust':
+        return '#F59E0B';
+      case 'sadness':
+        return '#EF4444';
+      case 'anger':
+        return '#DC2626';
+      case 'fear':
+        return '#8B5CF6';
+      case 'contempt':
+        return '#F59E0B';
+      default:
+        return '#9CA3AF';
+    }
+  }
 
   const dailyTrends = [
     { time: '9:00', feliz: 20, neutral: 15, confundido: 8, triste: 2 },
@@ -36,6 +83,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+    fetchRecords();
     return () => clearInterval(timer);
   }, []);
 
@@ -151,7 +199,7 @@ const Dashboard = () => {
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
-                    data={emotionData}
+                    data={records}
                     cx="50%"
                     cy="50%"
                     innerRadius={60}
@@ -159,7 +207,7 @@ const Dashboard = () => {
                     paddingAngle={5}
                     dataKey="count"
                   >
-                    {emotionData.map((entry, index) => (
+                    {records.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
                   </Pie>
@@ -171,16 +219,16 @@ const Dashboard = () => {
               </ResponsiveContainer>
             </div>
             <div className="mt-4 space-y-2">
-              {emotionData.map((item, index) => (
+              {records.map((item, index) => (
                 <div key={index} className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
                     <div
                       className="w-3 h-3 rounded-full"
                       style={{ backgroundColor: item.color }}
                     ></div>
-                    <span className="text-sm font-medium">{item.emotion}</span>
+                    <span className="text-sm font-medium">{item.name}</span>
                   </div>
-                  <span className="text-sm text-gray-600">{item.percentage}%</span>
+                  <span className="text-sm text-gray-600">{item.accuracy}%</span>
                 </div>
               ))}
             </div>
