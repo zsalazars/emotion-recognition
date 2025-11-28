@@ -190,6 +190,7 @@ const Records = () => {
                     <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Curso</th>
                     <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Aula</th>
                     <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Emoción</th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Estudiante</th>
                     <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Precisión</th>
                     <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Fecha</th>
                   </tr>
@@ -214,6 +215,11 @@ const Records = () => {
                       <td className="px-6 py-4">
                         <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium border`}>
                           {record.emotion.name}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4">
+                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium border`}>
+                          {record.student.name}
                         </span>
                       </td>
                       <td className="px-6 py-4">

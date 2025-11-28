@@ -35,8 +35,6 @@ const Dashboard = () => {
       return acc;
     }, []);
 
-    console.log(emotionData)
-
     setRecords(emotionData);
   }
 
