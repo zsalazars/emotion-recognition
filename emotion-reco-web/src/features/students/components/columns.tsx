@@ -9,9 +9,9 @@ const columnHelper = createColumnHelper<Student>();
 const columns = (({
   onView, onEdit, onDelete
 }: {
-  onView: (student: any) => void;
-  onEdit: (student: any) => void;
-  onDelete: (student: any) => void;
+  onView: (student: Student) => void;
+  onEdit: (student: Student) => void;
+  onDelete: (student: Student) => void;
 }) => [
     columnHelper.accessor('id', {
       header: 'ID',

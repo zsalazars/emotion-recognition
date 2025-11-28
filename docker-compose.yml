@@ -31,35 +31,35 @@ services:
     depends_on:
       - db
 
-  api:
-    build:
-      context: ./emotion-reco-api
-      dockerfile: Dockerfile
-    container_name: emotion_api
-    restart: always
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
-    ports:
-      - "8000:8000"
-    depends_on:
-      db:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+  # api:
+  #   build:
+  #     context: ./emotion-reco-api
+  #     dockerfile: Dockerfile
+  #   container_name: emotion_api
+  #   restart: always
+  #   environment:
+  #     DATABASE_URL: ${DATABASE_URL}
+  #   ports:
+  #     - "8000:8000"
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
 
-  web:
-    build:
-      context: ./emotion-reco-web
-      dockerfile: Dockerfile
-    container_name: emotion_web
-    restart: always
-    ports:
-      - "3000:80"
-    depends_on:
-      - api
+  # web:
+  #   build:
+  #     context: ./emotion-reco-web
+  #     dockerfile: Dockerfile
+  #   container_name: emotion_web
+  #   restart: always
+  #   ports:
+  #     - "3000:80"
+  #   depends_on:
+  #     - api
 
 volumes:
   postgres_data:

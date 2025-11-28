@@ -22,29 +22,23 @@ import {
 import columns from './columns';
 import type { Student } from '@/types/Student';
 
-const StudentsTable = ({ data }: { data: Student[] }) => {
+interface StudentsTableProps {
+  data: Student[];
+  onHandleView: (student: Student) => void;
+  onHandleEdit: (student: Student) => void;
+  onHandleDelete: (student: Student) => void;
+}
+
+const StudentsTable = ({ data, onHandleView, onHandleEdit, onHandleDelete }: StudentsTableProps) => {
   const [globalFilter, setGlobalFilter] = useState('');
   const [sorting, setSorting] = useState<SortingState>([]);
-
-  // Función para ver detalles
-  const handleView = () => {
-  };
-
-  // Función para editar
-  const handleEdit = () => {
-  };
-
-  // Función para eliminar
-  const handleDelete = () => {
-
-  };
 
   const table = useReactTable({
     data,
     columns: columns({
-      onView: handleView,
-      onEdit: handleEdit,
-      onDelete: handleDelete,
+      onView: onHandleView,
+      onEdit: onHandleEdit,
+      onDelete: onHandleDelete,
     }),
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),

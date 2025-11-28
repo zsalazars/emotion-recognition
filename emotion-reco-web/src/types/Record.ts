@@ -1,5 +1,6 @@
 import type { Course } from "./Course";
 import type { Emotion } from "./Emotion";
+import type { Student } from "./Student";
 
 export interface Record {
   id: number;
@@ -8,6 +9,7 @@ export interface Record {
   timestamp: string;
   emotion: Emotion;
   course: Course;
+  student: Student;
 }
 
 export interface RecordPost {
