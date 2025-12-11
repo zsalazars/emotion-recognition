@@ -27,9 +27,10 @@ interface StudentsTableProps {
   onHandleView: (student: Student) => void;
   onHandleEdit: (student: Student) => void;
   onHandleDelete: (student: Student) => void;
+  onHandlePdf: (student: Student) => void;
 }
 
-const StudentsTable = ({ data, onHandleView, onHandleEdit, onHandleDelete }: StudentsTableProps) => {
+const StudentsTable = ({ data, onHandleView, onHandleEdit, onHandleDelete, onHandlePdf }: StudentsTableProps) => {
   const [globalFilter, setGlobalFilter] = useState('');
   const [sorting, setSorting] = useState<SortingState>([]);
 
@@ -39,6 +40,7 @@ const StudentsTable = ({ data, onHandleView, onHandleEdit, onHandleDelete }: Stu
       onView: onHandleView,
       onEdit: onHandleEdit,
       onDelete: onHandleDelete,
+      onPdf: onHandlePdf,
     }),
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
@@ -73,7 +75,7 @@ const StudentsTable = ({ data, onHandleView, onHandleEdit, onHandleDelete }: Stu
                 className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors shadow-md"
               >
                 <UserPlus className="w-4 h-4" />
-                <span>Nuevo Profesor</span>
+                <span>Nuevo Alumno</span>
               </button>
             </div>
 
@@ -84,7 +86,7 @@ const StudentsTable = ({ data, onHandleView, onHandleEdit, onHandleDelete }: Stu
                 value={globalFilter ?? ''}
                 onChange={e => setGlobalFilter(String(e.target.value))}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Buscar profesores..."
+                placeholder="Buscar alumnos..."
               />
             </div>
           </div>
@@ -93,7 +95,7 @@ const StudentsTable = ({ data, onHandleView, onHandleEdit, onHandleDelete }: Stu
           <div className="px-6 py-3 bg-gray-50 border-b border-gray-200">
             <div className="flex justify-between items-center text-sm text-gray-600">
               <span>
-                Mostrando {table.getRowModel().rows.length} de {table.getFilteredRowModel().rows.length} profesores
+                Mostrando {table.getRowModel().rows.length} de {table.getFilteredRowModel().rows.length} alumnos
               </span>
               <span>
                 Total: {data.length} registros
