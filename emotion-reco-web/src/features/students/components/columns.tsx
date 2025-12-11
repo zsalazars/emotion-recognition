@@ -2,16 +2,17 @@ import type { Student } from '@/types/Student';
 import {
   createColumnHelper,
 } from '@tanstack/react-table';
-import { Edit2, Eye, Trash2 } from 'lucide-react';
+import { Edit2, Eye, FileText, Trash2 } from 'lucide-react';
 
 const columnHelper = createColumnHelper<Student>();
 
 const columns = (({
-  onView, onEdit, onDelete
+  onView, onEdit, onDelete, onPdf
 }: {
   onView: (student: Student) => void;
   onEdit: (student: Student) => void;
   onDelete: (student: Student) => void;
+  onPdf: (student: Student) => void;
 }) => [
     columnHelper.accessor('id', {
       header: 'ID',
@@ -64,6 +65,13 @@ const columns = (({
             title="Eliminar"
           >
             <Trash2 className="w-4 h-4" />
+          </button>
+          <button
+            onClick={() => onPdf(row.original)}
+            className="p-1 text-green-600 hover:bg-green-100 rounded transition-colors"
+            title="Eliminar"
+          >
+            <FileText className='w-4 h-4' />
           </button>
         </div>
       ),

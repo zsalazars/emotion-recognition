@@ -70,7 +70,7 @@ const CourseTable = ({ data }: { data: Course[] }) => {
                 value={globalFilter ?? ''}
                 onChange={e => setGlobalFilter(String(e.target.value))}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Buscar profesores..."
+                placeholder="Buscar asignaturas..."
               />
             </div>
           </div>
@@ -79,7 +79,7 @@ const CourseTable = ({ data }: { data: Course[] }) => {
           <div className="px-6 py-3 bg-gray-50 border-b border-gray-200">
             <div className="flex justify-between items-center text-sm text-gray-600">
               <span>
-                Mostrando {table.getRowModel().rows.length} de {table.getFilteredRowModel().rows.length} profesores
+                Mostrando {table.getRowModel().rows.length} de {table.getFilteredRowModel().rows.length} asignaturas
               </span>
               <span>
                 Total: {data.length} registros

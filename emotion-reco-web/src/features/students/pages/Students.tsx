@@ -63,7 +63,6 @@ const Students = () => {
 
     const records = await GetRecordsByStudentAndCourse(student.id, parseInt(id!));
 
-    console.log(records)
     const emotionData = records.reduce((acc: EmotionChartData[], record: Record) => {
       const existing = acc.find(item => item.name === record.emotion.name);
       if (existing) {
@@ -90,6 +89,10 @@ const Students = () => {
     console.log("Eliminar estudiante:", student);
   };
 
+  const exportPdf = (student: Student) => {
+    console.log("Exportar PDF del estudiante:", student);
+  }
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -100,7 +103,7 @@ const Students = () => {
 
   return (
     <div>
-      <StudentsTable data={data} onHandleView={handleView} onHandleEdit={handleEdit} onHandleDelete={handleDelete} />
+      <StudentsTable data={data} onHandleView={handleView} onHandleEdit={handleEdit} onHandleDelete={handleDelete} onHandlePdf={exportPdf} />
 
       {student && (
         <Modal
